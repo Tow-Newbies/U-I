@@ -1,0 +1,118 @@
+@import "./animate.less";
+
+@animated-duration: 0.5s;
+
+.animated {
+	-webkit-animation-duration: @animated-duration !important;
+	animation-duration: @animated-duration !important;
+}
+
+/*
+常用变量值
+
+ */
+
+@normal-font: 1.1rem;
+@emphsis-font: 1.2rem;
+
+@normal-color: #454545;
+
+@theme-color: #3BB3C2;
+
+@normal-padding: 1rem;
+
+@border-color: #eaeaea;
+@border: 1px solid @border-color;
+
+@touched-bg-color: #a9a9a9;
+/*
+flex 布局
+ */
+.flex-layout(){
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+    justify-content: space-around;
+
+    flex-align-items: center;
+    flex-justify-content: space-around;
+
+}
+
+/*
+png 背景图标
+ */
+
+@PNG_ICON_PATH: "../img/png_icon/";
+
+.png-icon(@file, @path: @MC_ICON_PATH) {
+	background-size: contain !important;
+	background-image: url("@{path}@{file}");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+
+
+html{
+	font-size: 63.5%;
+}
+body{
+	background: #fff;
+	font-size: @normal-font;
+	color:  @normal-color;
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+	color: @normal-color;
+	width: 100%;
+	height: 100%;
+	display: block;
+	&:link,&:visited,&:hover,&:active{
+		text-decoration: none;
+	}
+}
+
+ul{
+	padding: 0;
+}
+.text-center{
+	text-align: center;
+}
+.actionbar{
+	width: 100%;
+	padding: @normal-padding 0; 
+	.flex-layout();
+	background: @theme-color;
+}
+.footbar{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	&-item{
+		width: 100%;
+		padding: @normal-padding;
+		height: 100%;
+		background: #FFFFFF;
+		&:focus, &:active, &.active{
+			color: @theme-color!important;
+		}
+	}
+}
+.dock-fill{
+	
+}
+.flex{
+	.flex-layout();
+	border-top: @border;
+}
+/*消除抖动*/
+.fadeOutLeft, .fadeOutRight{
+	display: none;
+}
+
+
+
