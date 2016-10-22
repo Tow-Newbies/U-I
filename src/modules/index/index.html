@@ -17,7 +17,7 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html ng-app="myApp">
+<html>
     <head>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
@@ -29,27 +29,48 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; script-src *; connect-src *"> -->
-        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' *; connect-src * data: blob:; img-src * data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; frame-src *; media-src *">
+        <meta http-equiv="Content-Security-Policy"
+        content="default-src *; style-src 'self' 'unsafe-inline' *;object-src * data: blob:;
+         connect-src * data: blob:; img-src * data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;child-src 'self' http://webapi.amap.com/ data: blob: *; frame-src gap: *; media-src gap: *">
+
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--<script src="http://webapi.amap.com/maps?v=1.3&key=d51757a95cbe947bed4517daefb2a52d"></script>-->
         <title>Hello World</title>
     </head>
+    <style>
+        .my-splash{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+        .delay{
+            opacity: 0;
+        }
+
+    </style>
     
     <body ng-controller="mainCtrl as mainCtrl">
-        <div class="actionbar">
+
+        <div class="actionbar delay" delay-show animate-bar isTop="true">
             <div>MY CORDOVA</div>
         </div>
         <div ng-view class="app-animate"></div>
 
-        <div class="footbar flex text-center">
+        <!-- 待分离成组件 -->
+        <div id="footbar" animate-bar isTop="false" delay-show class="delay footbar flex text-center">
             <a ng-click="tab.func(tab)"
                ng-repeat="tab in mainCtrl.tabs"
                class="footbar-item"
                ng-class="{'active': tab.active}"
                ng-href="{{tab.url}}">
-                {{tab.name}}
+                <div><span class="home-icon {{tab.icon}}"></span></div>
+                <div ng-bind="tab.name"></div>
             </a>
         </div>
 
@@ -58,13 +79,21 @@
         <footbar></footbar>
 
 -->
-        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <!-- splash -->
+        <div class="my-splash"  my-splash></div>
+
+        <!-- utils alerts -->
+        <div class="my-alerts delay" delay-show my-alerts alerts="mainCtrl.alerts">
+            <div class="alerts-item" ng-repeat="alert in alerts">
+                <span class="msg short-msg">{{alert.msg}}</span>
+            </div>
+        </div>
+         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="libs/baseLibs.js"></script>
         <script type="text/javascript" src="libs/my.js"></script>
+        <script src="js/indexmain.js"></script>
+        <!--<script src="js/splashmain.js"></script>-->
         <script src="js/homemain.js"></script>
-
-
-
-
     </body>
+
 </html>

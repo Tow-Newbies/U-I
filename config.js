@@ -11,7 +11,8 @@ var config = {
 		html: './src/**/*.html',
 		less: './src/**/*.less',
 		libs: './src/libs/*.js',
-		common: 'src/common'
+		common: 'src/common',
+		res: './src/res'
 	},
 	// cordova 工程文件
 	dist: {

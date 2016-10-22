@@ -142,4 +142,56 @@ app.config(function($routeProvider, $controllerProvider, $compileProvider, $filt
         }
     }
 ])
+    .factory("myLoader", [
+        "$q",
+        "$timeout",
+        function($q, $timeout){
+            var loader = {
+                loadJs: loadJs,
+                loadCss: loadCss
+            };
+
+            function loadJs(src) {
+                var defer = $q.defer();
+                console.log("load js: "+ src)
+                var script = document.createElement('script');
+                script.src = src;
+
+                document.body.appendChild(script);
+
+                script.onload = function(){
+                    defer.resolve();
+                    $timeout(function(){
+                        // document.body.removeChild(script);
+                        script.onload = null;
+                        script = null;
+                    },10)
+                };
+                script.onerror = function(err){
+                    defer.reject(err);
+                };
+                return defer.promise;
+            }
+
+            function loadCss(href) {
+                var defer = $q.defer();
+                var css = document.createElement("link");
+                link.href = href;
+
+                document.head.appendChild(link);
+
+                link.onload = function(){
+                    defer.resolve();
+                };
+                link.onerror = function(){
+                    console.log(src+"加载失败，请检查href是否填写正确");
+                    defer.reject();
+                };
+
+                return defer.promise;
+            }
+
+            return loader;
+        }
+    ])
 ;

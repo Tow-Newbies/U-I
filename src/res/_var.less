@@ -1,0 +1,44 @@
+
+/*
+常用变量值
+
+ */
+
+@normal-font: 1.1rem;
+@emphsis-font: 1.2rem;
+
+@normal-color: #454545;
+
+@theme-color: #3BB3C2;
+
+@normal-padding: 1rem;
+
+@border-color: #eaeaea;
+@border: 1px solid @border-color;
+
+@touched-bg-color: #a9a9a9;
+/*
+flex 布局
+ */
+.flex-layout(){
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-align-items: center;
+  flex-justify-content: space-around;
+
+}
+
+/*
+png 背景图标
+ */
+
+@PNG_ICON_PATH: "../img/png_icon/";
+
+.png-icon(@file, @path: @MC_ICON_PATH) {
+  background-size: contain !important;
+  background-image: url("@{path}@{file}");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}

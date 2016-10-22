@@ -1,9 +1,16 @@
-<div class="dock-fill">
+<div class="dock-fill module-home">
 
-	<div>
+	<banner>
+	</banner>
 
-		This is a cordova project, now we are in home page;
+	<div class="m-item" >
+		<div ng-click="hc.open(m.url)" class="m-outer text-center" ng-repeat="m in hc.modules track by $index">
+            <a class="m-inner">
+                <div class="item"><i class="m-a-icon icon fa {{m.icon}}"></i></div>
+                <div class="item"><span>{{m.name}}</span></div>
+            </a>
+
+		</div>
 	</div>
-		
 </div>
 

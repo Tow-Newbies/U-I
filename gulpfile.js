@@ -32,12 +32,14 @@ gulp.task("js", function(){
 });
 
 gulp.task('jsLibs', buildLibs);
+
+gulp.task('copyFont', copyFont);
 /**
  * 清理文件
  * @param  {[type]} ){	 gulp.src(config.dist.base+"*.*")				.pipe(del())				.pipe(gulp.dest(config.dist.base))} [description]
  * @return {[type]}      [description]
  */
-gulp.task('clean', function(){
+gulp.task('clean',["clean:app"], function(){
 	del(config.dist.base+"/**/*");
 });
 
@@ -173,12 +175,16 @@ function buildHtml(){
 }
 
 function buildLess(){
-	return gulp.src(config.src.less)
+	return gulp.src([config.src.less, config.src.res+"/index.less"])
 				.pipe(less())
 				.pipe(concat("style.css"))
 				.pipe(gulp.dest(config.dist.css));
 }
 
+function copyFont(){
+	return gulp.src("./src/res/font/*\.{ttf,woff,eot}")
+		.pipe(gulp.dest(config.dist.css+"/fonts"))
+}
 function buildBaseLibs(){
 	return gulp
 				.src(config.src.base)
@@ -246,13 +252,17 @@ function createApp(){
 }
 // 添加 Android 平台
 function addPlatform(){
-	log.echo("Add Android platform");
+	log("Add Android platform");
 	shell.cd("app");
 	shell.exec("cordova platform add android");
 }
 
 // 替换 cordova应用图标
 function replaceRes(){
+	log("Delete Cordova res");
+	var pwd = shell.pwd();
+	var apk = "/app/platforms/android/res/drawable-land-*";
+	// shell.exec("")
 }
 
 // 合并common 文件
@@ -278,6 +288,6 @@ function copyWWW(){
 // 初始化cordova 工程
 gulp.task("init-app", runSequence('createApp', 'addPlatform'));
 // 浏览器开发测试
-gulp.task("default", runSequence('clean','getModules','js',['jsLibs', 'buildBaseMyLibs', 'less', 'html', 'buildHOME'], ['watch:modules', 'watch:common', 'serve']));
+gulp.task("default", runSequence('clean','getModules','js',['jsLibs', 'buildBaseMyLibs', 'less', 'html', 'buildHOME', 'copyFont'], ['watch:modules', 'watch:common', 'serve']));
 // 打包cordova 工程
-gulp.task("build", runSequence(['clean','clean:app'],'getModules','js',['jsLibs', 'buildBaseMyLibs', 'less', 'html', 'buildHOME'], 'copyWWW', 'buildApp'));
+gulp.task("build", runSequence('clean','getModules','js',['jsLibs', 'buildBaseMyLibs', 'less', 'html', 'buildHOME', 'copyFont'], 'copyWWW', 'buildApp'));

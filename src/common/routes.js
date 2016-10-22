@@ -9,7 +9,8 @@ angular
             name: "home",
             tmp: "html/home/main.html",
             ctrl: "homeCtrl",
-            ctrlAs: "hc"
+            ctrlAs: "hc",
+            icon: "my-icon-home"
 
         },{
 
@@ -17,7 +18,15 @@ angular
             name: "food",
             tmp: "html/food/main.html",
             ctrl: "foodCtrl",
-            ctrlAs: "fc"
+            ctrlAs: "fc",
+            icon: "my-icon-msg"
+        },{
+            url: "/map",
+            name: "map",
+            tmp: "html/map/map.html",
+            ctrl: "mapCtrl",
+            ctrlAs: "mc",
+            icon: "my-icon-edit"
         }
     ])
     .value("LoadedModules", [])

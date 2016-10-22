@@ -1,0 +1,28 @@
+/* 重置默认属性 */
+@import "./_var.less";
+html {
+    font-size: 63.5%;
+}
+
+body {
+    background: #fff;
+    font-size: @normal-font;
+    color: @normal-color;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: @normal-color;
+    display: block;
+    &:link, &:visited, &:hover, &:active {
+        text-decoration: none;
+    }
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+

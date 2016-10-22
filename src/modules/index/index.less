@@ -1,0 +1,115 @@
+@import "../../res/_var.less";
+
+.actionbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: @normal-padding 0;
+    .flex-layout();
+    background: @theme-color;
+}
+
+.footbar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    &-item {
+        width: 100%;
+        padding: @normal-padding;
+        height: 100%;
+        background: #FFFFFF;
+        &:focus, &:active, &.active {
+            color: @theme-color !important;
+        }
+    }
+}
+
+.dock-fill {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-top: 3.2rem;
+}
+
+.scroll-y {
+    overflow-y: visible;
+}
+
+.flex {
+    .flex-layout();
+    border-top: @border;
+}
+
+/*消除抖动*/
+.fadeOutLeft, .fadeOutRight {
+    display: none;
+}
+
+.home-icon{
+    font-size: 1.8rem;
+}
+.my-alerts {
+    width: 100%;
+    position: absolute;
+    bottom: 2em;
+    left: 0;
+    z-index: 101;
+    text-align: center;
+    color: #ffffff;
+    .alerts-item {
+        position: relative;
+        display: block;
+        //width: 100%;
+        text-align: center;
+        overflow: hidden;
+        padding: @normal-padding 0;
+        .msg {
+            padding: @normal-padding;
+            background: @theme-color*0.5;
+            border-radius: 10px;
+
+        }
+        .short-msg {
+            max-width: 8em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.bar-animate {
+    transition-timing-function: ease;
+    transition-delay: 1s;
+}
+
+
+.delay-show{
+    opacity: 0;
+    animation: delay_show;
+    transition-duration: 1.5s;
+    transform-style: flat;
+    transition-timing-function: ease-in;
+}
+@keyframes delay_show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes delay_show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
