@@ -52,18 +52,28 @@
         .delay{
             opacity: 0;
         }
+        .view-ng{
+            /*overflow: hidden;
+            position: absolute;
+            width: 100%;
+            height: 90%;
+            margin-bottom: 59px;*/
+            padding-top: 3.2rem;
+
+        }
 
     </style>
     
     <body ng-controller="mainCtrl as mainCtrl">
 
-        <div class="actionbar delay" delay-show animate-bar isTop="true">
-            <div>MY CORDOVA</div>
+        <div class="actionbar delay"  delay-show animate-bar bar-name="top" is-to-hide="mainCtrl.hideBar.top" isTop="true">
+            <div my-navbar></div>
         </div>
-        <div ng-view class="app-animate"></div>
+        <!--<div class="my-refresh "><i my-refresh class="my-icon-refresh "></i></div>-->
+        <div ng-view class="view-ng app-animate" ng-class="{'blur-bg':mainCtrl.setting.blur}"></div>
 
         <!-- 待分离成组件 -->
-        <div id="footbar" animate-bar isTop="false" delay-show class="delay footbar flex text-center">
+        <div id="footbar" animate-bar isTop="false" bar-name="bot" delay-show is-to-hide="mainCtrl.hideBar.bot" class="delay footbar flex text-center">
             <a ng-click="tab.func(tab)"
                ng-repeat="tab in mainCtrl.tabs"
                class="footbar-item"
@@ -88,12 +98,22 @@
                 <span class="msg short-msg">{{alert.msg}}</span>
             </div>
         </div>
+
+        <!--  jigsaw view -->
+        <div my-jigsaw
+         ng-if="mainCtrl.jigsaw.url" jigsaw-text="{{mainCtrl.jigsaw.text}}"
+         jigsaw-url="mainCtrl.jigsaw.url">
+        </div>
+
+
          <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="libs/baseLibs.js"></script>
+        <script type="text/javascript" src="libs/myLibs.js"></script>
         <script type="text/javascript" src="libs/my.js"></script>
         <script src="js/indexmain.js"></script>
         <!--<script src="js/splashmain.js"></script>-->
         <script src="js/homemain.js"></script>
+        <!--<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>-->
+        <!--<script src="http://cdn.bootcss.com/masonry/4.1.1/masonry.pkgd.min.js"></script>-->
     </body>
 
 </html>

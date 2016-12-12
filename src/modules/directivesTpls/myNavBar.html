@@ -1,0 +1,14 @@
+<div class="my-nav-bar" ng-if="!nav.isHide">
+    <span  class="back-btn nav-btn" ng-if="nav.isHideBack" ng-click="nav.goBack()">
+        <i class="my-icon-left"></i>
+    </span>
+    <span class="title-btn nav-btn" ng-bind="nav.title">
+
+    </span>
+    <span class="act-btns nav-btn"
+          ng-class="{'ng-hide':nav.navBtns[btn].hide}"
+          ng-repeat="btn in nav.navBtns track by $index"
+          ng-click="nav.navBtns[btn].actionFn()">
+        <i class="{{nav.navBtns[btn].icon}}"></i>
+    </span>
+</div>

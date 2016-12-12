@@ -1,7 +1,7 @@
 /**
  * Created by my on 2016/10/18.
  */
- var app = angular.module("common.myLoader", ["ngRoute"])
+ var app = angular.module("common.myLoader", ["ngRoute", "common.eventListener"])
 app.config(function($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide)
         {
 
@@ -26,30 +26,37 @@ app.config(function($routeProvider, $controllerProvider, $compileProvider, $filt
             })();
 
             ROUTES.forEach(function(item, index){
-                console.log(item)
+                console.log(item);
+                var defaultResolve = {
+                    // console.log("This is resolve")
+                    loadModule: ["$q","$timeout", "$rootScope", function($q, $timeout, $rootScope){
+                        var d = $q.defer();
+                        if(routes.indexOf(item.name) != -1){
+                            d.resolve();
+                            return d.promise;
+                        }
+                        loadModules(item.name, $timeout, $q)
+                            .then(function(){
+                                routes.push(item.name);
+                                d.resolve();
+                            });
+
+                        return d.promise;
+
+                    }],
+                    // 是否开启animateBar
+                    isHideBar: ["eventListener", function (eventListener) {
+                        // 减少不必要的触发
+                        item.hideBar && eventListener.trigger('myHideAnimateBar')(item.hideBar);
+                    }]
+                };
+                var resolveObj = item.resolve || {};
                 $routeProvider
                     .when(item.url, {
                         controller: item.ctrl,
                         controllerAs: item.ctrlAs,
                         templateUrl: item.tmp,
-                        resolve: {
-                            // console.log("This is resolve")
-                            loadModule: ["$q","$timeout", "$rootScope", function($q, $timeout, $rootScope){
-                                var d = $q.defer();
-                                if(routes.indexOf(item.name) != -1){
-                                    d.resolve();
-                                    return d.promise;
-                                }
-                                loadModules(item.name, $timeout, $q)
-                                    .then(function(){
-                                        routes.push(item.name);
-                                        d.resolve();
-                                    });
-
-                                return d.promise;
-
-                            }]
-                        }
+                        resolve: angular.extend({}, resolveObj, defaultResolve)
                     })
             });
 
@@ -147,11 +154,28 @@ app.config(function($routeProvider, $controllerProvider, $compileProvider, $filt
         "$timeout",
         function($q, $timeout){
             var loader = {
-                loadJs: loadJs,
+                loadJs: _loadJs,
                 loadCss: loadCss
             };
 
-            function loadJs(src) {
+            function loadJs(srcs){
+                var toLoads = [];
+                var defer = $q.defer();
+                if(typeof srcs == 'string'){
+                    srcs = Array.prototype.slice.call([], srcs);
+                }
+                // srcs = [].prototype.slice.call([], srcs);
+                (srcs || []).forEach(function (src) {
+                    toLoads.push(_loadJs(src))
+                });
+                if(!toLoads.length)return;
+                Promise.all(toLoads)
+                    .then(function (rslt) {
+                        defer.resolve(rslt)
+                    });
+                return defer.promise;
+            }
+            function _loadJs(src) {
                 var defer = $q.defer();
                 console.log("load js: "+ src)
                 var script = document.createElement('script');

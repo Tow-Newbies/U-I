@@ -1,7 +1,11 @@
-<div class="dock-fill module-home">
+<div class="dock-fill scroll-y module-home">
 
-	<banner>
-	</banner>
+	<div my-slide-show
+		 my-slide-pics="::hc.bannerList"
+		 my-slide-len="{{::hc.bannerList.length}}"
+	>
+
+	</div>
 
 	<div class="m-item" >
 		<div ng-click="hc.open(m.url)" class="m-outer text-center" ng-repeat="m in hc.modules track by $index">
@@ -12,5 +16,6 @@
 
 		</div>
 	</div>
+
 </div>
 

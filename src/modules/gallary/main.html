@@ -1,0 +1,13 @@
+<div class="dock-fill scroll-y my-gallary" scroll-listen>
+    <!--<div class="test">-->
+
+        <div class="lit-card" ng-click='gc.showBig($event)' ng-repeat='g in gc.gallarys'>
+            <div class="card-pic" pic-id="{{g.id}}"  pic-url="{{g.url}}">
+                <img class="card-img" src="{{g.url}}" pic-id="{{g.id}}"  pic-url="{{g.url}}" alt="" ng-click='gc.showBig($event)'>
+            </div>
+            <p class="card-desc">
+                {{g.desc}}
+            </p>
+        </div>
+    <!--</div>-->
+</div>

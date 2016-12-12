@@ -85,29 +85,57 @@ angular
 
         }
     ])
+    .directive('myActionSheet', [
+        function () {
+            function link() {
+
+            }
+
+            return{
+                link: link
+            }
+        }
+    ])
+    .factory("myActionSheetFactory", [
+
+    ])
     .service("utils", [
         "myGLOBAL",
         "$rootScope",
         function (myGLOBAL, $rootScope) {
             this.notice = utilnotice;
 
-            function utilnotice(msg, type){
+            /**
+             * 提示
+             * @param msg   提示内容
+             * @param type 长时间或短时间
+             * @param pos  暂未实现位置选择
+             */
+            function utilnotice(msg, type, pos){
                 msg = msg?msg:"";
                 type = type?type:"short";
 
                 var alertsDelay = ["short", "long"];
-                var alertPos = ["top", "middle", "bottom"];
+                var alertPos = ["top", "mid", "bot"];
                 var hashNo = Math.floor(Math.random()*1000000);
                 myGLOBAL.alerts.push({
                     type: type,
                     id: Date.now()+hashNo+hashNo.toString(16),
                     msg: msg,
                     start: Date.now(),
-                    fired: false
+                    fired: false,
+                    pos:"bot"
                 });
                 console.log(Date.now()+hashNo+hashNo.toString(16));
                 $rootScope.$emit("alerts:in");
             }
+
+            function actionSheet(actions){
+
+            }
+
+
+
         }
     ])
 ;

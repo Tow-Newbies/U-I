@@ -1,0 +1,251 @@
+/**
+ directive less
+
+*/
+
+.setJigsawPieace(@total, @i:0) when(@i<@total){
+    @posX: mod(@i, 3)*50%;
+    @posY: -50%+(floor(@i/3))*100%;
+    .jigsaw@{i}{
+        background-position: @posX @posY;
+        opacity: 0;
+    }
+
+    .setJigsawPieace(@total, (@i+1));
+}
+/*
+.gether(@total, @i:0) when(@i<@total){
+    @transX: mod(@i+1, 2)*16.666666%*(@i-1);
+    @transY: mode(@i+1, 2)
+    when(mod(@i+1, 2) == 1){
+    .tranform@{i}{
+            transform: translateX(@transX);
+        }
+    }
+}*/
+@keyframes jigsawAnimation {
+    0%{
+
+    }
+    100%{
+
+    }
+}
+
+/* 九宫格 */
+.my-jigsaw{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(44,44,44,.4);
+    z-index: 2;
+
+    .setJigsawPieace(9);
+    @transX: 16.66666666%;
+    @transY: 19.5px;
+    @jigsaw-bg: rgba(255, 255, 255, .5);
+    //@transY: 25.5666666%;
+    .transformR{
+        transform: translateX(@transX);
+    }
+    .transformL{
+        transform: translateX(-@transX);
+    }
+    .transformU{
+        transform: translateY(-@transY);
+    }
+    .transformD{
+        transform: translateY(@transY);
+    }
+    .transformRD{
+        transform: translateX(@transX) translateY(@transY);
+    }
+    .transformLD{
+        transform: translateX(-@transX) translateY(@transY);
+    }
+    .transformLU{
+        transform: translateX(-@transX) translateY(-@transY);
+    }
+
+    .transformRU{
+        //transform: translateX(@transX) translateY(-@transY);
+        transform: translateX(@transX) translateY(-@transY);
+    }
+    /*.my-jigsaw{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(44,44,44,.4);
+        z-index: 2;
+    }*/
+     .container{
+        position: absolute;
+        width: 100%;
+        padding-bottom: 300%;
+        top: 5%;
+        left: 50%;
+        //height: 0;
+        transform: translateX(-50%);
+    }
+    .jigsaw-box{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        background: @jigsaw-bg;
+    }
+    .jigsaw-item{
+        width: 30%;
+        padding-bottom: 30%;
+        height: 0;
+        float: left;
+        margin: 10px -1px;
+        background: @jigsaw-bg;
+
+    }
+    .jigsaw-desc-b{
+        width: 100%;
+        padding:4px 4.8%;
+        position: relative;
+        transform: translateY(-20%);
+        height: 0;
+        padding-bottom: 50%;
+    }
+    .jigsaw-desc{
+        word-wrap: break-word;
+        word-break: break-all;
+        background: @jigsaw-bg;
+        padding: 10px 4px;
+        text-transform: capitalize;
+        text-indent: 1em;
+    }
+    .jigsaw-desc:first-letter{
+        font-size: 200%;
+    }
+    .jigsaw-perspective{
+        perspective: 1000px;
+    }
+    .jigsaw-animated{
+        -webkit-animation-duration: 2s;
+        animation-duration: 2s;
+        transition-duration: 2s;
+        transition-timing-function: cubic-bezier();
+    }
+    .jigsaw-pieace{
+        width: 100%;
+        /*height: 100%;*/
+        padding-bottom: 100%;
+        background-repeat: no-repeat;
+        //background-size: 300% 300%;
+        background-size: inherit;
+        /*border: 1px solid;*/
+    }
+
+}
+
+.water-fall{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .wf-main{
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+        overflow: hidden;
+    }
+    .wf-main .wf-cld{
+        position: absolute;
+        margin-bottom: 10px;
+        padding:5px 8px;
+        width: 44%;
+        line-height:18px;
+        overflow: hidden;
+    }
+    .wf-cld .inner{
+        position: absolute;
+        margin-bottom: 5px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .wf-cld .title{
+        margin: 0 0 5px;
+        padding: 5px;
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
+.my-nav-bar{
+    //position: absolute;
+    width: 100%;
+    padding: 0em 0.8em;
+    font-size: 1.2em;
+    height: 100%;
+    .nav-btn{
+        padding: 1em 0.5em;
+    }
+    .title-btn{
+        color: white;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .act-btns{
+        position: relative;
+        float: right;
+        padding-left: 1.2rem;
+    }
+    .back-btn{
+        position: absolute;
+        padding-left: 0;
+    }
+}
+.my-refresh-animate{
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    transition-duration: 2s;
+    transition-timing-function: linear;
+}
+
+@keyframes my-refresh-animation{
+    0% {
+        transform: rotate(0deg) ;
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.my-refresh-rotate{
+    animation-duration: 3s;
+    animation-iteration-count: 3;
+    transform-origin: center;
+    animation-name: my-refresh-animation;
+}
+.my-refresh{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    //left: 50%;
+    margin: 0 auto;
+    //transform: translateX(-50%);
+    top: 0;
+    color: #3BB3C2;
+    font-size: 2rem;
+    z-index: 1;
+}
+.my-icon-refresh{
+    position: absolute;
+    top: 0;
+    margin-left: -0.5em;
+}

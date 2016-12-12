@@ -10,7 +10,7 @@ angular
 				init: function () {
 					return this;
 				},
-				xhr: createXhr(),
+				xhr: createXhr,
 				post: function () {
 
 				},
@@ -19,18 +19,18 @@ angular
 					//转换
 					var toPostData = JSON.stringify(data);
 					toPostData = toPostData.replace(/[\{\}\'\"]/g, "").replace(/\:/g, "=").replace(/\,/g, "&")
-
+					var _xhr = http.xhr();
 					var defer = new Promise(function (resolve, reject) {
-						self.xhr.open('get', (prefix || "") + url + "?" + toPostData, true);
-						self.xhr.onreadystatechange = function (res) {
-							if (('4' == self.xhr.readyState && '200' == self.xhr.status) || '304' == self.xhr.status) {
-								console.log(self.xhr.responseText);
+						_xhr.open('get', (prefix || "") + url + "?" + toPostData, true);
+						_xhr.onreadystatechange = function (res) {
+							if (('4' == _xhr.readyState && '200' == _xhr.status) || '304' == self.xhr.status) {
+								console.log(_xhr.responseText);
 								resolve(res);
 							} else {
 								reject(res);
 							}
 						}
-						self.xhr.send(null);
+						_xhr.send(null);
 					});
 
 					return defer;
@@ -69,7 +69,8 @@ angular
 					}
 				}
 			}
-
+			// http.xhr();
+			this.xhr = http.xhr();
 			this.get = http.get;
 			this.jsonp = http.jsonp;
 			this.post = http.post;

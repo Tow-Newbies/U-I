@@ -1,0 +1,83 @@
+<style>
+    .my-slide-show-box{
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        overflow: hidden;
+    }
+    .slides-ul-box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 33%;
+        height: 100%;
+        margin: 0;
+    }
+    .pic-container{
+        height: 100%;
+        width: 100%;
+        -webkit-background-size: cover!important;
+        background-size: cover!important;
+        background-position: 50% 50%!important;
+    }
+    .slides-li-cnt{
+        width: 100%;
+        height: 100%;
+        /*float: left;*/
+        display: inline-block;
+    }
+    .slides-li-cnt .pic-container{
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    .slide-show-box{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .pic-pre-box, .pic-next-box{
+        position: relative;
+        width: 0;
+        height: 100%;
+    }
+    .pic-cur-box{
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .pic-box{
+        background-size: cover!important;
+        float: left;
+    }
+</style>
+<div class="my-slide-show-box {{mySlideShowClass}}">
+    <!--<ul class="slides-ul-box">
+        <li class="slides-li-cnt" ng-repeat="pic in mySlidePics track by $index">
+            &lt;!&ndash;<div class="slides-pic">&ndash;&gt;
+                <div class="pic-container" style="background: url({{pic.url}})"></div>
+            &lt;!&ndash;</div>&ndash;&gt;
+        </li>
+    </ul>-->
+    <div class="slide-show-box">
+        <!--<div class="pic-pre-box pic-box" style="background: url({{prePic.url}})">-->
+
+        <!--</div>-->
+        <div class="pic-cur-box pic-box" style="background: url({{curPic.url}})">
+
+        </div>
+        <!--<div class="pic-next-box pic-box" style="background: url({{nextPic.url}})">-->
+
+        <!--</div>-->
+    </div>
+    <div class="">
+        <div class="pic-desc">
+
+        </div>
+        <div class="pic-no"></div>
+    </div>
+</div>

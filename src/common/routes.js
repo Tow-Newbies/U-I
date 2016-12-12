@@ -1,6 +1,7 @@
 /**
  * Created by my on 2016/10/18.
  */
+// 路由定义，可由后台返回
 angular
     .module("common.routes", [])
     .constant("ROUTES", [
@@ -27,6 +28,21 @@ angular
             ctrl: "mapCtrl",
             ctrlAs: "mc",
             icon: "my-icon-edit"
+        },{
+            url: "/walkMate",
+            name: "walkMate",
+            tmp: "html/walkMate/main.html",
+            ctrl: "walkMateCtrl",
+            ctrlAs: "wmc",
+            icon: "my-icon-edit"
+        },{
+            url: "/gallary",
+            name: "gallary",
+            tmp: "html/gallary/main.html",
+            ctrl: "gallaryCtrl",
+            ctrlAs: "gc",
+            icon: "my-icon-edit",
+            hideBar:'both'
         }
     ])
     .value("LoadedModules", [])

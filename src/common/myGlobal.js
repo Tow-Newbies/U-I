@@ -10,6 +10,17 @@ angular
             var myGLOBAL = {
                 modules: ["home"],
                 alerts : [],
+                userInfo:{
+                    pos: null, // 用户当前位置
+                    walkMateRoutes: {} // 用户跑步记录
+                },
+                setting: {
+                  hideBar: {
+                      both: false,
+                      top: false,
+                      bot: false
+                  }
+                },
                 open: open
             };
 

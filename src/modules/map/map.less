@@ -87,13 +87,19 @@
             border: @border;
             background: #333333;
             color: #ffffff;
-            padding: 5px 7px;
+            padding: 5px .5rem;
             border-radius: 5px;
             display: inline-block;
+            z-index: 9999;
+            position: absolute;
+            width: 10rem;
+            max-width: 10rem;
+            margin-left: -5.5rem;
         }
 
         .map-geo{
-            background: url(http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png);
+            //background: url(http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png);
+            //background: url("css/img/geo-flag.png");
             height: 2.5rem;
             position: absolute;
             left: 0;
@@ -106,6 +112,9 @@
             background-position-x: 50%;
             display: block;
             width: 100%;
+            font-size: 4rem;
+            margin-top: -2.5rem;
+            color: #333333;
 
         }
         .my-map-drag{
@@ -133,7 +142,7 @@
     .slow_long{
         transform: scale(1);
         //animation: slow_shorter 1s;
-        transition-duration: 1s;
+        transition-duration: .5s;
 
     }
     .pos{

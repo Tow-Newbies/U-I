@@ -1,0 +1,33 @@
+
+
+<div class="my-jigsaw" >
+    <div class="container">
+        <div class="jigsaw-box" id="jigsaw-box" ng-if="!!jigsawUrl">
+            <div class="jigsaw-item jigsaw-animated" ng-repeat="item in jigsawBoxs">
+                <div class="jigsaw-pieace jigsaw-animated jigsaw{{item}}"
+                     style="background-image: url({{jigsawUrl}});"
+                ></div>
+            </div>
+            <div class="jigsaw-desc-b pulse jigsaw-animated ">
+                <div class=" jigsaw-desc">
+                    {{jigsawText}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--background-imagess: url({{jigsawUrl}});-->
+    <!--<ul class="jigsaw-box" ng-if="!!jigsawUrl">
+        <li class="jigsaw-item jigsaw-animated" ng-repeat="item in jigsawBoxs">
+            <div class="jigsaw-pieace jigsaw{{item}}"
+                 style="background-image: url({{jigsawUrl}});"
+            ></div>
+        </li>
+    </ul>
+    <div>
+        This is a try
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>-->
+</div>

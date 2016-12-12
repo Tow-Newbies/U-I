@@ -9,7 +9,7 @@ var config = {
 		modules: './src/modules/**/*.*',
 		js: './src/**/*.js',
 		html: './src/**/*.html',
-		less: './src/**/*.less',
+		less: './src/**/*.{less,css}',
 		libs: './src/libs/*.js',
 		common: 'src/common',
 		res: './src/res'
@@ -37,6 +37,18 @@ var config = {
 		port: 3000,
 		root: './www'
 		
+	},
+	// 打包时排出的模块
+	build: {
+		excludeModules: ['movies']
+	},
+
+	//cordova run android --release -- --keystore=../my-release-key.keystore --storePassword=password --alias=alias_name --password=password
+	keystore:{
+		Keystore:"my-ui-key.jks",
+		storePassword:"yl140523",
+		alias:"app",
+		password:"yl140523",
 	}
 
 };
